@@ -1235,8 +1235,8 @@ void *cf_int_capture_thread(void *arg) {
     kis_capture_handler_t *caph = (kis_capture_handler_t *) arg;
 
     /* Set us cancelable */
-    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-    pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
+  //  pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+ //  pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
 
     if (caph->capture_cb != NULL) {
         (*(caph->capture_cb))(caph);
@@ -1431,8 +1431,8 @@ void *cf_int_chanhop_thread(void *arg) {
     kis_capture_handler_t *caph = (kis_capture_handler_t *) arg;
 
     /* Set us cancelable */
-    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
-    pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
+  //  pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+  //  pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
 
     size_t hoppos;
 
