@@ -61,6 +61,12 @@
 
 #include "kis_external_packet.h"
 
+
+int pthread_cancel(pthread_t h) {
+        return pthread_kill(h, 0);
+}
+
+
 struct kis_capture_handler;
 typedef struct kis_capture_handler kis_capture_handler_t;
 
