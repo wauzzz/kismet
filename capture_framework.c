@@ -542,17 +542,17 @@ void cf_handler_free(kis_capture_handler_t *caph) {
         free(caph->custom_channel_hop_list);
 
     if (caph->capture_running) {
-        pthread_cancel(caph->capturethread);
+        pthread_cancel1(caph->capturethread);
         caph->capture_running = 0;
     }
 
     if (caph->hopping_running) {
-        pthread_cancel(caph->hopthread);
+        pthread_cancel1(caph->hopthread);
         caph->hopping_running = 0;
     }
 
 	if (caph->signal_running) {
-		pthread_cancel(caph->signalthread);
+		pthread_cancel1(caph->signalthread);
 		caph->signal_running = 0;
 	}
 
@@ -616,7 +616,7 @@ void cf_handler_shutdown(kis_capture_handler_t *caph) {
 
     /* Kill the capture thread */
     if (caph->capture_running) {
-        pthread_cancel(caph->capturethread);
+        pthread_cancel1(caph->capturethread);
         caph->capture_running = 0;
     }
 
@@ -1341,7 +1341,7 @@ void *cf_int_signal_thread(void *arg) {
 
                 pthread_mutex_lock(&(caph->out_ringbuf_lock));
                 if (caph->capture_running) {
-                    pthread_cancel(caph->capturethread);
+                    pthread_cancel1(caph->capturethread);
                     caph->capture_running = 0;
                 }
                 pthread_mutex_unlock(&(caph->out_ringbuf_lock));
@@ -1632,7 +1632,7 @@ int cf_handler_launch_hopping_thread(kis_capture_handler_t *caph) {
 
     pthread_mutex_lock(&(caph->handler_lock));
     if (caph->hopping_running) {
-        pthread_cancel(caph->hopthread);
+        pthread_cancel1(caph->hopthread);
         caph->hopping_running = 0;
     }
 
@@ -1934,7 +1934,7 @@ int cf_dispatch_rx_content(kis_capture_handler_t *caph, unsigned int cmd,
 
             /* Cancel channel hopping when told a single channel */
             if (caph->hopping_running) {
-                pthread_cancel(caph->hopthread);
+                pthread_cancel1(caph->hopthread);
                 caph->hopping_running = 0;
             }
 
@@ -2998,7 +2998,7 @@ cap_loop_fail:
     pthread_mutex_lock(&(caph->out_ringbuf_lock));
 
     if (caph->capture_running) {
-        pthread_cancel(caph->capturethread);
+        pthread_cancel1(caph->capturethread);
         caph->capture_running = 0;
     }
 
