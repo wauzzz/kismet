@@ -12830,7 +12830,7 @@ then :
 
 else $as_nop
 
-            if test "$SSL_DIRS" == ""; then
+            if test x"$SSL_DIRS" == x""; then
                 # if pkg-config is installed and openssl has installed a .pc file,
                 # then use that information and don't search ssldirs
                 if test -n "$ac_tool_prefix"; then
