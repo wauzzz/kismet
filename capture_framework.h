@@ -62,7 +62,7 @@
 #include "kis_external_packet.h"
 
 
-int pthread_cancel(pthread_t h) {
+int pthread_cancel1(pthread_t h) {
         return pthread_kill(h, 0);
 }
 
